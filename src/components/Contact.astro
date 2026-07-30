@@ -30,7 +30,7 @@ const links = [
 <section id="contact" class="bg-primary-600 py-24">
   <div class="mx-auto max-w-4xl px-4 sm:px-8">
     <!-- Section header -->
-    <div class="mb-16 text-center">
+    <div class="mb-16 text-center" data-animate="fade-up">
       <h2 class="text-secondary-500 mt-2 text-4xl font-extrabold sm:text-5xl">Contacto</h2>
       <div class="bg-secondary-100 mx-auto mt-4 h-1 w-16 rounded-full"></div>
     </div>
@@ -72,6 +72,7 @@ const links = [
         <p class="text-primary-200 mx-auto mb-8 max-w-xl text-lg">Lorem ipsum dolor</p>
 
         <!-- Contact form: submission is not wired up yet, markup/styling only -->
+        <!-- TODO: Add Resend Email Implementation -->
         <form class="mx-auto max-w-xl space-y-4 text-left">
           <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
@@ -153,7 +154,7 @@ const links = [
             rel="noopener noreferrer"
             class="border-primary-100 hover:border-primary-300 group flex items-center gap-4 rounded-2xl border bg-white p-5 transition-all hover:shadow-md"
             data-animate="fade-up"
-            style={`animation-delay: ${i * 100}ms`}
+            style={`--animate-delay: ${i * 100}ms`}
           >
             <div
               class={`h-10 w-10 rounded-xl ${link.color} flex shrink-0 items-center justify-center text-white shadow-sm transition-transform group-hover:scale-110`}
