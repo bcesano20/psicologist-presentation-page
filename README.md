@@ -12,14 +12,14 @@ There is no separate backend service: endpoints and Astro Actions inside the Ast
 
 ## Page structure
 
-| Route | Access | Description |
-|---|---|---|
-| `/` | Public | Landing / professional presentation | about me / psicoterapist and contact sections
-| `/blogs` | Public | List of published articles |
-| `/blogs/[slug]` | Public | Article detail |
-| `/admin/login` | Public | Login form |
-| `/admin/posts` | Protected | List and manage posts (draft/published) |
-| `/admin/posts/new` | Protected | Editor to create/edit an article |
+| Route              | Access    | Description                             |
+| ------------------ | --------- | --------------------------------------- |
+| `/`                | Public    | Landing / professional presentation     | about me / psicoterapist and contact sections |
+| `/blogs`           | Public    | List of published articles              |
+| `/blogs/[slug]`    | Public    | Article detail                          |
+| `/admin/login`     | Public    | Login form                              |
+| `/admin/posts`     | Protected | List and manage posts (draft/published) |
+| `/admin/posts/new` | Protected | Editor to create/edit an article        |
 
 `/admin/*` routes are protected by middleware (`src/middleware.ts`) that validates the Supabase Auth session and redirects to `/admin/login` if there is no active session.
 
@@ -33,7 +33,7 @@ There is no separate backend service: endpoints and Astro Actions inside the Ast
 - `content` (Markdown or HTML)
 - `cover_image_url`
 - `published` (boolean)
-- `created_at` 
+- `created_at`
 - `updated_at`
 
 A single admin user (the psychologist) managed by Supabase Auth. There is no multi-role system in this version.
