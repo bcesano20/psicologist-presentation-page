@@ -1,11 +1,12 @@
 <section
-  is="psicoterapist"
+  id="psicoterapist"
   class="bg-secondary-100 nav:flex-row nav:justify-between relative flex flex-col items-center justify-center overflow-hidden"
 >
   <!-- Text Section  -->
-  <div class="flex flex-1 flex-col px-20 py-10">
-    <h1 class="text-secondary-300 mobile:text-[44px] pb-6.25 text-left text-[70px] font-bold">
-      Psicoterapias y Experiencia
+  <div class="mobile:px-15 3xl:px-16 flex flex-1 flex-col px-11 py-10" data-animate="fade-right">
+    <h1 class="text-secondary-300 mobile:text-[40px] pb-6.25 text-left text-[60px] font-bold">
+      Psicoterapias y
+      <span> Experiencia</span>
     </h1>
     <p class="text-primary-700 mobile:text-[18px] text-left text-[24px]">
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet molestie urna. Etiam
@@ -25,6 +26,7 @@
     <!-- Card Structure -->
     <div
       class="group bg-primary-600 border-primary-600 shadow-primary-400/40 flex flex-row items-center justify-center rounded-2xl border-2 px-2 py-1 shadow-md transition-transform hover:scale-105"
+      data-animate="fade-left"
     >
       <span
         class="bg-secondary-400 relative mr-3 flex h-3 w-3 shrink-0 items-center justify-center rounded-full"
@@ -41,6 +43,8 @@
     </div>
     <div
       class="group bg-primary-600 border-primary-600 shadow-primary-400/40 flex flex-row items-center justify-center rounded-2xl border-2 px-2 py-1 shadow-md transition-transform hover:scale-105"
+      data-animate="fade-left"
+      style="--animate-delay: 120ms"
     >
       <span
         class="bg-secondary-400 relative mr-3 flex h-3 w-3 shrink-0 items-center justify-center rounded-full"
@@ -57,6 +61,8 @@
     </div>
     <div
       class="group bg-primary-600 border-primary-600 shadow-primary-400/40 flex flex-row items-center justify-center rounded-2xl border-2 px-2 py-1 pb-5 shadow-md transition-transform hover:scale-105"
+      data-animate="fade-left"
+      style="--animate-delay: 240ms"
     >
       <span
         class="bg-secondary-400 relative mr-3 flex h-3 w-3 shrink-0 items-center justify-center rounded-full"
@@ -73,7 +79,9 @@
     </div>
     <a
       href="/blogs"
-      class="bg-primary-700 text-secondary-300 rounded-full p-3 shadow-md transition-transform hover:scale-110 hover:cursor-pointer hover:text-white"
+      class="bg-primary-600 text-secondary-50 shadow-primary-300/50 hover:bg-primary-700 hover:shadow-primary-400/50 rounded-full px-6 py-3 font-semibold shadow-lg transition-all hover:-translate-y-0.5"
+      data-animate="fade-up"
+      style="--animate-delay: 360ms"
     >
       Revisa mis Publicaciones
     </a>
