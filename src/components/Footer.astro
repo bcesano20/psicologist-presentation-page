@@ -1,0 +1,53 @@
+---
+const navLinks = [
+  { label: 'Email', value: 'brunocesano20@gmail.com' },
+  { label: 'Github', value: 'github.com/bcesano20' },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-primary-900 text-secondary-200">
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-8">
+    <div class="nav:flex-row nav:justify-between flex flex-col gap-10">
+      <!-- Brand -->
+      <div class="max-w-sm">
+        <a href="#hero-container" class="inline-flex items-center gap-3">
+          <span
+            class="bg-primary-700 text-secondary-50 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-lg font-bold shadow-md"
+          >
+            LV
+          </span>
+          <span class="text-secondary-50 text-lg font-semibold">Lourdes Villanueva</span>
+        </a>
+        <p class="text-secondary-300 mt-4 text-sm leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sit amet molestie urna.
+          Etiam volutpat, arcu quis efficitur vehicula.
+        </p>
+      </div>
+
+      <!-- Nav links -->
+      <div>
+        <h3 class="text-secondary-50 text-sm font-semibold tracking-wide uppercase">Contacto</h3>
+        <nav class="mt-4 flex flex-col gap-2">
+          {
+            navLinks.map((link) => (
+              <p class="text-secondary-300 hover:text-secondary-50 w-fit transition-colors">
+                {link.label} : {link.value}
+              </p>
+            ))
+          }
+        </nav>
+      </div>
+    </div>
+
+    <div
+      class="border-secondary-700/30 nav:flex-row mt-12 flex flex-col items-center justify-between gap-4 border-t pt-6"
+    >
+      <p class="text-secondary-400 text-[14px]">
+        &copy; {year} Bruno Cesano. Todos los derechos reservados.
+      </p>
+      <p class="text-secondary-400 text-[14px]">Desarrollado por Bruno Cesano</p>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,114 @@
+---
+const navLinks = [
+  { label: 'Inicio', href: '#hero-container' },
+  { label: 'Sobre Mi', href: '#about-container' },
+  { label: 'Psicoterapias', href: '#psicoterapist' },
+  { label: 'Contacto', href: '#contact' },
+];
+---
+
+<header
+  class="border-primary-100 bg-secondary-50/95 sticky top-0 z-50 border-b shadow-sm backdrop-blur-sm"
+>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-8">
+    <!-- Desktop links -->
+    <nav class="nav:flex hidden items-center gap-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-primary-700 hover:text-primary-900 font-medium transition-colors"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <!-- Mobile hamburger toggle -->
+    <button
+      id="menu-toggle"
+      type="button"
+      aria-controls="mobile-menu"
+      aria-expanded="false"
+      aria-label="Abrir menú"
+      class="nav:hidden text-primary-700 hover:bg-primary-50 inline-flex h-10 w-10 items-center justify-center rounded-lg transition-colors"
+    >
+      <svg
+        id="menu-icon-open"
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"></path>
+      </svg>
+      <svg
+        id="menu-icon-close"
+        xmlns="http://www.w3.org/2000/svg"
+        class="hidden h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Logo -->
+    <a
+      href="#hero-container"
+      aria-label="Inicio"
+      class="bg-primary-700 text-secondary-50 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-lg font-bold shadow-md transition-transform hover:scale-105"
+    >
+      LV
+    </a>
+  </div>
+
+  <!-- Mobile menu panel -->
+  <div id="mobile-menu" class="nav:hidden border-primary-100 bg-secondary-50 hidden border-t">
+    <nav class="flex flex-col gap-1 px-4 py-4 sm:px-8">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="text-primary-700 hover:bg-primary-50 hover:text-primary-900 rounded-lg px-3 py-2 font-medium transition-colors"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  function setOpen(isOpen: boolean) {
+    menu?.classList.toggle('hidden', !isOpen);
+    toggle?.setAttribute('aria-expanded', String(isOpen));
+    iconOpen?.classList.toggle('hidden', isOpen);
+    iconClose?.classList.toggle('hidden', !isOpen);
+  }
+
+  toggle?.addEventListener('click', () => {
+    setOpen(menu?.classList.contains('hidden') ?? false);
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setOpen(false));
+  });
+</script>
