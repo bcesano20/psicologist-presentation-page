@@ -1,0 +1,60 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import MarkdownEditor from '../../../components/admin/MarkdownEditor';
+---
+
+<AdminLayout title="Nuevo post">
+  <h1 class="text-primary-900 text-3xl font-bold">Nuevo post</h1>
+  <p class="text-primary-600 mt-1 text-sm">Completá los datos y escribí el contenido en Markdown</p>
+
+  <!-- Post editor: submission and cover image upload are not wired up yet, markup/styling only -->
+  <form class="mt-8 space-y-6">
+    <div>
+      <label for="post-title" class="text-primary-700 mb-1 block text-sm font-medium">
+        Título
+      </label>
+      <input
+        type="text"
+        id="post-title"
+        name="title"
+        required
+        placeholder="Título del post"
+        class="border-primary-200 text-primary-900 focus:border-primary-400 focus:ring-primary-400 w-full rounded-xl border px-4 py-3 focus:ring-2 focus:outline-none"
+      />
+    </div>
+
+    <div>
+      <label for="post-cover" class="text-primary-700 mb-1 block text-sm font-medium">
+        Imagen de portada
+      </label>
+      <input
+        type="file"
+        id="post-cover"
+        name="cover"
+        accept="image/*"
+        class="border-primary-200 text-primary-700 file:bg-primary-600 file:text-secondary-50 hover:file:bg-primary-700 w-full rounded-xl border px-4 py-3 text-sm file:mr-4 file:rounded-full file:border-0 file:px-4 file:py-2 file:font-semibold file:transition-colors"
+      />
+    </div>
+
+    <MarkdownEditor client:load name="content" />
+
+    <div class="flex flex-wrap gap-4">
+      <button
+        type="submit"
+        name="action"
+        value="draft"
+        class="bg-primary-600 text-secondary-50 hover:bg-primary-700 rounded-full px-6 py-3 font-semibold shadow-lg transition-all hover:-translate-y-0.5"
+      >
+        Guardar borrador
+      </button>
+      <button
+        type="submit"
+        name="action"
+        value="publish"
+        class="border-primary-200 text-primary-700 hover:border-primary-400 hover:text-primary-900 rounded-full border px-6 py-3 font-semibold transition-all hover:-translate-y-0.5"
+      >
+        Publicar
+      </button>
+    </div>
+  </form>
+</AdminLayout>
