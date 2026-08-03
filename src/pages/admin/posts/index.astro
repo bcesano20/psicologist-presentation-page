@@ -1,0 +1,61 @@
+---
+import AdminLayout from '../../../layouts/AdminLayout.astro';
+import { posts } from '../../../data/posts';
+---
+
+<AdminLayout title="Posts">
+  <div class="nav:flex-row nav:items-center nav:justify-between mb-8 flex flex-col gap-4">
+    <div>
+      <h1 class="text-primary-900 text-3xl font-bold">Posts</h1>
+      <p class="text-primary-600 mt-1 text-sm">Gestioná los artículos del blog</p>
+    </div>
+    <a
+      href="/admin/posts/new"
+      class="bg-primary-600 text-secondary-50 hover:bg-primary-700 inline-flex w-fit items-center gap-2 rounded-full px-6 py-3 font-semibold shadow-lg transition-all hover:-translate-y-0.5"
+    >
+      + Nuevo post
+    </a>
+  </div>
+
+  <div class="border-primary-100 overflow-hidden rounded-2xl border bg-white shadow-sm">
+    <table class="w-full text-left text-sm">
+      <thead class="bg-secondary-50 text-primary-700 text-xs tracking-wide uppercase">
+        <tr>
+          <th class="px-5 py-3 font-semibold">Título</th>
+          <th class="px-5 py-3 font-semibold">Estado</th>
+          <th class="px-5 py-3 font-semibold">Actualizado</th>
+          <th class="px-5 py-3 text-right font-semibold">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="divide-primary-50 divide-y">
+        {
+          posts.map((post) => (
+            <tr>
+              <td class="text-primary-900 px-5 py-4 font-medium">{post.title}</td>
+              <td class="px-5 py-4">
+                <span
+                  class={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${
+                    post.published
+                      ? 'bg-accent-100 text-accent-800'
+                      : 'bg-secondary-200 text-secondary-800'
+                  }`}
+                >
+                  {post.published ? 'Publicado' : 'Borrador'}
+                </span>
+              </td>
+              <td class="text-primary-600 px-5 py-4">{post.updatedAt}</td>
+              <td class="px-5 py-4 text-right">
+                <a
+                  href={`/admin/posts/new?slug=${post.slug}`}
+                  class="text-primary-600 hover:text-primary-900 font-medium transition-colors"
+                >
+                  Editar
+                </a>
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</AdminLayout>
