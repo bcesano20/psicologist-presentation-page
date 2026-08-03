@@ -1,0 +1,86 @@
+---
+import PublicLayout from '../../layouts/PublicLayout.astro';
+import { posts } from '../../data/posts';
+
+const publishedPosts = posts
+  .filter((post) => post.published)
+  .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+---
+
+<PublicLayout title="Publicaciones · Psicóloga Villanueva">
+  <section class="bg-secondary-50 min-h-screen px-4 py-24 sm:px-8">
+    <div class="mx-auto max-w-4xl">
+      <div class="mb-12 text-center" data-animate="fade-up">
+        <h1 class="text-primary-900 text-4xl font-extrabold sm:text-5xl">Publicaciones</h1>
+        <div class="bg-primary-200 mx-auto mt-4 h-1 w-16 rounded-full"></div>
+      </div>
+
+      <div
+        class="border-primary-100 overflow-hidden rounded-2xl border bg-white shadow-sm"
+        data-animate="fade-up"
+        style="--animate-delay: 100ms"
+      >
+        {
+          publishedPosts.length > 0 ? (
+            <table class="w-full text-left text-sm">
+              <thead class="bg-secondary-100 text-primary-700 text-xs tracking-wide uppercase">
+                <tr>
+                  <th class="px-5 py-3 font-semibold">Título</th>
+                  <th class="px-5 py-3 font-semibold">Fecha</th>
+                  <th class="px-5 py-3" />
+                </tr>
+              </thead>
+              <tbody class="divide-primary-50 divide-y">
+                {publishedPosts.map((post) => (
+                  <tr class="hover:bg-secondary-50 transition-colors">
+                    <td class="px-5 py-4">
+                      <a
+                        href={`/blogs/${post.slug}`}
+                        class="text-primary-900 hover:text-primary-600 font-semibold transition-colors"
+                      >
+                        {post.title}
+                      </a>
+                    </td>
+                    <td class="text-primary-600 px-5 py-4">
+                      {new Date(post.createdAt).toLocaleDateString('es-AR', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </td>
+                    <td class="px-5 py-4 text-right">
+                      <a
+                        href={`/blogs/${post.slug}`}
+                        aria-label={`Leer ${post.title}`}
+                        class="text-primary-400 hover:text-primary-700 inline-flex transition-colors"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          class="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          ) : (
+            <p class="text-primary-500 px-5 py-10 text-center text-sm">
+              Todavía no hay publicaciones.
+            </p>
+          )
+        }
+      </div>
+    </div>
+  </section>
+</PublicLayout>

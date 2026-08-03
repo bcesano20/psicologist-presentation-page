@@ -1,0 +1,51 @@
+---
+import { marked } from 'marked';
+
+import PublicLayout from '../../layouts/PublicLayout.astro';
+import { posts } from '../../data/posts';
+
+const { slug } = Astro.params;
+const post = posts.find((candidate) => candidate.slug === slug && candidate.published);
+
+if (!post) {
+  return Astro.redirect('/blogs');
+}
+
+const contentHtml = marked.parse(post.content, { async: false }) as string;
+const formattedDate = new Date(post.createdAt).toLocaleDateString('es-AR', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<PublicLayout title={`${post.title} · Psicóloga Villanueva`}>
+  <article class="bg-secondary-50 min-h-screen px-4 py-24 sm:px-8">
+    <div class="mx-auto max-w-3xl">
+      <a
+        href="/blogs"
+        class="text-primary-600 hover:text-primary-900 mb-8 inline-flex items-center gap-1 text-sm font-medium transition-colors"
+      >
+        ← Volver a publicaciones
+      </a>
+
+      {
+        post.coverImageUrl && (
+          <img
+            src={post.coverImageUrl}
+            alt={post.title}
+            class="mb-8 h-64 w-full rounded-2xl object-cover shadow-md sm:h-80"
+          />
+        )
+      }
+
+      <h1 class="text-primary-900 text-4xl font-extrabold sm:text-5xl">{post.title}</h1>
+      <p class="text-primary-500 mt-3 text-sm">{formattedDate}</p>
+
+      <div
+        class="prose prose-headings:text-primary-900 prose-p:text-primary-800 prose-a:text-primary-600 prose-strong:text-primary-900 border-primary-100 mt-10 max-w-none border-t pt-8"
+        set:html={contentHtml}
+      />
+    </div>
+  </article>
+</PublicLayout>
