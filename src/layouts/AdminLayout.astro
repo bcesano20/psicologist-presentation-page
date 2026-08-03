@@ -1,0 +1,73 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title } = Astro.props;
+
+const adminLinks = [
+  { label: 'Posts', href: '/admin/posts' },
+  { label: 'Nuevo post', href: '/admin/posts/new' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<Layout title={title ? `${title} · Admin` : 'Admin'}>
+  <div class="bg-secondary-100 flex min-h-screen flex-col">
+    <header class="border-primary-100 bg-secondary-50 border-b shadow-sm">
+      <div
+        class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4 sm:px-8"
+      >
+        <div class="flex items-center gap-6">
+          <a href="/" class="flex items-center gap-2">
+            <span
+              class="bg-primary-700 text-secondary-50 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-bold shadow-sm"
+            >
+              LV
+            </span>
+            <span class="text-primary-900 hidden font-semibold sm:inline">Admin</span>
+          </a>
+
+          <nav class="flex items-center gap-4">
+            {
+              adminLinks.map((link) => (
+                <a
+                  href={link.href}
+                  class={`text-sm font-medium transition-colors ${
+                    currentPath === link.href
+                      ? 'text-primary-900'
+                      : 'text-primary-600 hover:text-primary-900'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              ))
+            }
+          </nav>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a
+            href="/"
+            class="text-primary-600 hover:text-primary-900 text-sm font-medium transition-colors"
+          >
+            Ver sitio
+          </a>
+          <a
+            href="/admin/login"
+            class="border-primary-200 text-primary-700 hover:border-primary-400 hover:text-primary-900 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors"
+          >
+            Cerrar sesión
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto w-full max-w-6xl flex-1 px-4 py-10 sm:px-8">
+      <slot />
+    </main>
+  </div>
+</Layout>
